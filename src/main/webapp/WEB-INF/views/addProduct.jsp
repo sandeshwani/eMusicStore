@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sandeshwani
-  Date: 8/23/17
-  Time: 12:54 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="/WEB-INF/views/template/header.jsp"%>
@@ -17,7 +11,7 @@
             <p class="lead">Fill the below information to add a product:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post"
+        <form:form action="${pageContext.request.contextPath}/admin/product/addProduct" method="post"
                    modelAttribute="product" enctype="multipart/form-data">
 
         <div class="form-group">

@@ -2,49 +2,27 @@ package com.emusicstore.dao.impl;
 
 import com.emusicstore.dao.CartDao;
 import com.emusicstore.model.Cart;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @Repository
-public class CartDaoImpl implements CartDao {
+@Transactional
+public class CartDaoImpl implements CartDao{
 
-    private Map<String, Cart> listOfCarts;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-
-    public CartDaoImpl(){
-
-        listOfCarts = new HashMap<String, Cart>();
+    public Cart getCartById (int cartId) {
+        Session session = sessionFactory.getCurrentSession();
+        return (Cart) session.get(Cart.class, cartId);
     }
 
-    public Cart create(Cart cart){
-
-        if(listOfCarts.keySet().contains(cart.getCartId())){
-            throw new IllegalArgumentException(String.format("Cannot create a new cart. A cart with the given id(%) already exists", cart.getCartId()));
-        }
-
-        listOfCarts.put(cart.getCartId(), cart);
-        return cart;
-    }
-
-    public Cart read(String cartId){
-
-        return listOfCarts.get(cartId);
-    }
-
-    public void update(String cartId, Cart cart){
-        if(!listOfCarts.keySet().contains(cartId)){
-            throw new IllegalArgumentException(String.format("Cannot update cart. A cart with the given id(%) does not exists", cart.getCartId()));
-        }
-
-        listOfCarts.put(cartId,cart);
-    }
-
-    public void delete(String cartId) {
-        if(!listOfCarts.keySet().contains(cartId)){
-            throw new IllegalArgumentException(String.format("Cannot delete cart. A cart with the given id(%) does not exists", cartId));
-        }
-        listOfCarts.remove(cartId);
+    public void update(Cart cart) {
+        int cartId = cart.getCartId();
+        // to do later
     }
 }

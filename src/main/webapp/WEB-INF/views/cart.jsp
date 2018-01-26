@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sandeshwani
-  Date: 9/8/17
-  Time: 4:53 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="/WEB-INF/views/template/header.jsp" %>
 
@@ -51,11 +45,14 @@
                         <th></th>
                         <th></th>
                         <th>Grand Total</th>
-                        <th>{{cart.grandTotal}}</th>
+                        <th>{{calGrandTotal()}}</th>
                         <th></th>
                     </tr>
                 </table>
                 <a href="<spring:url value="/productList" />" class="btn btn-default">Continue Shopping</a>
+                <a href="<spring:url value="/customer/cart/thankyou/${cartId}"/>"
+                   class="btn btn-success pull-right"><span class="glyphicon-shopping-cart glyphicon"></span> Submit Order
+                </a>
             </div>
 
         </section>
